@@ -1,5 +1,5 @@
 const cards = [
-  ['&#x1F483;&nbsp;ACTION', '&#x1F6B4;<br>ACTION', '&#x1F93C;&nbsp;ACTION', '&#x1F474;&nbsp;ADJECTIVE', '&#x1F408;&nbsp;ANIMALS', '&#x1F422;&nbsp;ANIMALS', '&#x1F457;&nbsp;CLOTHES', '&#x1F602;&nbsp;EMOTIONS'],
+  ['&#x1F483;&nbsp;ACTION', '&#x1F6B4;&nbsp;ACTION', '&#x1F93C;&nbsp;ACTION', '&#x1F474;&nbsp;ADJECTIVE', '&#x1F408;&nbsp;ANIMALS', '&#x1F422;&nbsp;ANIMALS', '&#x1F457;&nbsp;CLOTHES', '&#x1F602;&nbsp;EMOTIONS'],
   [
     {
       word: 'cry',
@@ -89,7 +89,7 @@ const cards = [
     },
     {
       word: 'skip',
-      translation: 'пропускать, прыгать',
+      translation: 'прыгать',
       image: './data/img/skip.jpg',
       audioSrc: './data/audio/skip.mp3',
     },
