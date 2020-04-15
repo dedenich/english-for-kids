@@ -167,7 +167,7 @@ h1 {
   border-top: 5px solid #e1e1e1;
 }
 
-.card-set:active {
+.card-set.rotated {
   transform: rotateY(180deg); 
 }
 
@@ -204,6 +204,10 @@ h1 {
 
 .card button:hover {
   color: rgb(73, 107, 221);
+}
+
+.card button:focus {
+  outline: none;
 }
 
 .card.back {
