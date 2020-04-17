@@ -148,6 +148,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  width: 100%;
 }
 
 .card-set {
@@ -156,6 +157,14 @@ h1 {
   height: 314.7px;
   width: 300px;
   margin-bottom: 40px;
+}
+
+.card-set.play {
+  height: min-content;
+}
+
+.card-set.play>.card{
+  border: 5px solid rgb(73, 107, 221);
 }
 
 .card {
@@ -171,6 +180,10 @@ h1 {
   transform: rotateY(180deg); 
 }
 
+.card-set.play.rotated {
+  transform: none;
+}
+
 .card.front img{
   width: 290px;
   display: block;
@@ -180,9 +193,21 @@ h1 {
   border-top-right-radius: 12px;
 }
 
+.card-set.play>.card img{
+  width: 290px;
+  display: block;
+  margin: 0 auto;
+  border: 0;
+  border-radius: 12px;
+}
+
 .card .card__text {
   display: flex;
   justify-content: center;
+}
+
+.card-set.play>.card .card__text {
+  display: none;
 }
 
 .card__text {
@@ -200,6 +225,10 @@ h1 {
   border: 0px;
   background-color: rgb(250, 250, 250);
   border-radius: 50%;
+}
+
+.card-set.play>.card button {
+  display: none;
 }
 
 .card button:hover {
@@ -221,6 +250,10 @@ h1 {
   height: 309.7px;
   transform: rotateY(180deg);
 } 
+
+.card-set.play>.card.back {
+  display: none;
+}
 
 .card.back .card__text {
   display: block;
@@ -245,6 +278,33 @@ h1 {
   font-weight: 500;
   font-size: 45px;
   text-align: center;
+}
+
+.button-play {
+  display: block;
+  position: relative;
+  margin: 0 calc(50% - 150px) 30px calc(50% - 150px);
+  width: 300px;
+  height: 60px;
+  border: none;
+  outline: none;
+  border-radius: 16px;
+  background-color: rgb(47, 88, 221);
+  font-size: 30px;
+  color: #fff;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.button-play.playtime {
+  background-image: url(./data/img/repeat.svg);
+  background-size: 45px 45px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 60px;
+  margin: 0 calc(50% - 30px) 30px calc(50% - 30px);
+  border-radius: 50%;
+  transition: 0.2s;
 }
 
 @media only screen and (max-width: 1360px) {
