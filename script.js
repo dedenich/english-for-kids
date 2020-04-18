@@ -50,37 +50,71 @@ class Card {
   }
 }
 
-// я хочу реализовать это так: создается массив карточек, перемешивается, потом по очереди на каждой проигрывается аудио.
-// Считывается клик, карточка, по которой кликнули сравнивается с той, на которой аудио. Если совпадают, подается следующая
-
 function game() {
+  const line = document.createElement('div');
+  line.classList.add('result-line');
+  cardsCont.insertAdjacentElement('afterbegin', line);
+
+  async function eveluateRes(res) {
+    if (res) {
+      line.innerHTML += '<div class="star win"></div>';
+      const audio = new Audio('./data/audio/correct.mp3');
+      await audio.play();
+    } else {
+      line.innerHTML += '<div class="star"></div>';
+      const audio = new Audio('./data/audio/error.mp3');
+      await audio.play();
+    }
+  }
+
+  function result() {
+    let flag = true;
+    line.childNodes.forEach((elem) => {
+      if (!elem.classList.contains('win')) flag = false;
+    });
+    if (flag === true) {
+      const resultArea = document.createElement('div');
+      resultArea.classList.add('result');
+      document.querySelector('body').insertAdjacentElement('afterbegin', resultArea);
+      const audio = new Audio('./data/audio/success.mp3');
+      audio.play();
+      setTimeout(() => {
+        resultArea.remove();
+      }, 3000);
+    } else {
+      const resultArea = document.createElement('div');
+      resultArea.classList.add('result', 'bad');
+      document.querySelector('body').insertAdjacentElement('afterbegin', resultArea);
+      const audio = new Audio('./data/audio/failure.mp3');
+      audio.play();
+      setTimeout(() => {
+        resultArea.remove();
+      }, 3000);
+    }
+  }
+
   const arr = Array.from(cardsCont.querySelectorAll('.card-set'));
   arr.sort(() => Math.random() - 0.5);
   let clicked;
-  let currentPlayed; // переменная для того чтобы сравнить элемент, на который кликнули, с тем, на котором проигрывается звук
-
-  let p; // переменная чтобы передать промис слушателя
-
-  cardsCont.addEventListener('click', (event) => {
-    p = new Promise((resolve) => {
-      clicked = event.target.closest('.card-set');
-      if (clicked === currentPlayed) {
-        resolve();
-      }
-    });
-  });
-
-//я нашел эти три функции. так можно пройти по массиву асинхронно
+  let currentPlayed;
 
   function delay(item) {
     return new Promise((resolve) => {
-      item.querySelector('audio').play() //этот метод возвращает промис
-        .then(async () => {
+      item.querySelector('audio').play()
+        .then(() => {
           currentPlayed = item;
-          console.log('in delay'); //это выводится
-          console.log(await p); //это выводится после клика по правилной карточке
-          console.log('before resolve'); //это не выводится
-        }).then(resolve);
+          const handler = (event) => {
+            clicked = event.target.closest('.card-set');
+            if (clicked === currentPlayed) {
+              item.removeEventListener('click', handler);
+              eveluateRes(true).then(resolve);
+            } else if (!event.target.classList.contains('playtime')) eveluateRes(false);
+          };
+          cardsCont.addEventListener('click', handler);
+          cardsCont.querySelector('.playtime').addEventListener('click', () => {
+            item.querySelector('audio').play();
+          });
+        });
     });
   }
 
@@ -92,7 +126,7 @@ function game() {
     for (const item of array) {
       await delayedLog(item);
     }
-    console.log('Done!');
+    result();
   }
 
   processArray(arr);
@@ -115,12 +149,10 @@ function createPage(indexStr) {
     buttonPLay.innerHTML = 'START!';
     cardsCont.appendChild(buttonPLay);
     buttonPLay.addEventListener('click', () => {
-      game();
-      buttonPLay.classList.toggle('playtime');
-      if (buttonPLay.classList.contains('playtime')) {
+      if (!buttonPLay.classList.contains('playtime')) {
+        game();
+        buttonPLay.classList.toggle('playtime');
         buttonPLay.innerHTML = '';
-      } else {
-        buttonPLay.innerHTML = 'START!';
       }
     });
   }
