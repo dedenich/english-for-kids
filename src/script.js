@@ -58,11 +58,11 @@ function game() {
   async function eveluateRes(res) {
     if (res) {
       line.innerHTML += '<div class="star win"></div>';
-      const audio = new Audio('./data/audio/correct.mp3');
+      const audio = new Audio('../data/audio/correct.mp3');
       await audio.play();
     } else {
       line.innerHTML += '<div class="star"></div>';
-      const audio = new Audio('./data/audio/error.mp3');
+      const audio = new Audio('../data/audio/error.mp3');
       await audio.play();
     }
   }
@@ -76,7 +76,7 @@ function game() {
       const resultArea = document.createElement('div');
       resultArea.classList.add('result');
       document.querySelector('body').insertAdjacentElement('afterbegin', resultArea);
-      const audio = new Audio('./data/audio/success.mp3');
+      const audio = new Audio('../data/audio/success.mp3');
       audio.play();
       setTimeout(() => {
         resultArea.remove();
@@ -85,7 +85,7 @@ function game() {
       const resultArea = document.createElement('div');
       resultArea.classList.add('result', 'bad');
       document.querySelector('body').insertAdjacentElement('afterbegin', resultArea);
-      const audio = new Audio('./data/audio/failure.mp3');
+      const audio = new Audio('../data/audio/failure.mp3');
       audio.play();
       setTimeout(() => {
         resultArea.remove();

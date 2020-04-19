@@ -294,7 +294,7 @@ h1 {
 }
 
 .button-play.playtime {
-  background-image: url(./data/img/repeat.svg);
+  background-image: url(../data/img/repeat.svg);
   background-size: 45px 45px;
   background-repeat: no-repeat;
   background-position: center;
@@ -318,12 +318,12 @@ h1 {
 .result-line .star {
   height: 40px;
   width: 40px;
-  background-image: url(./data/img/star.svg);
+  background-image: url(../data/img/star.svg);
   background-size: cover;
 }
 
 .result-line .star.win {
-  background-image: url(./data/img/star-win.svg);
+  background-image: url(../data/img/star-win.svg);
 }
 
 .result {
@@ -335,13 +335,13 @@ h1 {
   width: 100vw;
   height: 100vh;
   background-color: #FFF;
-  background-image: url('./data/img/success.jpg');
+  background-image: url('../data/img/success.jpg');
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .result.bad {
-  background-image: url('./data/img/failure.jpg');
+  background-image: url('../data/img/failure.jpg');
 }
 
 @media only screen and (max-width: 1360px) {
